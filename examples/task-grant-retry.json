@@ -1,0 +1,27 @@
+{
+  "osfpVersion": "0.1.0-draft.1",
+  "recordType": "task-grant",
+  "id": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-00000000000a",
+  "taskId": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000a1",
+  "generation": 2,
+  "requestRef": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000c1",
+  "resources": [{ "uri": "https://git.example.com/acme/widgets.git", "access": "write" }],
+  "operations": ["start", "publish"],
+  "disclosures": [
+    {
+      "source": "https://git.example.com/acme/widgets.git#docs/ARCHITECTURE.md",
+      "revision": "4c1e2a9f0b7d3e5a6c8b0d2f4e6a8c0b2d4f6e8a",
+      "destination": "harness:example-coder"
+    }
+  ],
+  "tools": [{ "server": "example-files", "name": "read_file" }],
+  "restrictions": [
+    { "target": "network", "rule": "deny-all", "enforcement": "enforced" },
+    { "target": "WebSearch", "rule": "disabled", "enforcement": "instruction" }
+  ],
+  "limits": { "startAckSeconds": 60, "totalSeconds": 900 },
+  "unknownAttempts": ["urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000b1"],
+  "approvedBy": "mailto:owner@example.com",
+  "approvedAt": "2026-11-11T18:10:00Z",
+  "expiresAt": "2026-11-12T18:00:00Z"
+}

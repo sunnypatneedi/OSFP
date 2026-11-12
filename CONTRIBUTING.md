@@ -21,15 +21,16 @@ Update `spec/STANDARD.md`, `spec/standard.json`, any examples, and `CHANGELOG.md
 
 ```
 node scripts/check-standard.mjs
-node scripts/check-examples.mjs
+node scripts/check-osfp.mjs
+node scripts/self-test.mjs
 ```
 
-Both must exit 0. Paste their summary lines into the pull request. They name files relative to the repository, never by local path.
+All three must exit 0. Paste their summary lines into the pull request. They name files relative to the repository, never by local path. If you change a check, add a self-test case that proves the new check can fail.
 
 ## Breaking changes
 
 Copy [the proposal template](proposals/0000-template.md). A breaking change needs a comment window and outside readers. See GOVERNANCE.md.
 
-## Sign-off
+## License of contributions
 
-<!-- Choose before the first public release: Developer Certificate of Origin 1.1 sign-off (git commit -s), or a contributor license agreement. Do not claim a process you have not adopted. -->
+OSFP is licensed under the [Apache License 2.0](LICENSE). Under section 5 of that license, a contribution you submit for inclusion is licensed under the same terms, unless you say otherwise. No contributor license agreement or sign-off is required today.

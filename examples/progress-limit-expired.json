@@ -9,6 +9,8 @@
     "osfpVersion": "0.1.0-draft.1",
     "recordType": "progress",
     "id": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-000000000005",
+    "event": "limit-expired",
+    "occurredAt": "2026-11-11T18:01:05Z",
     "taskId": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000a1",
     "attemptId": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000b1",
     "limit": "startAckSeconds",

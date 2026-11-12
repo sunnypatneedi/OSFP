@@ -21,9 +21,9 @@ These rules bind every editor, human or AI. They live in the repository, committ
 
 | Change | Bump |
 |---|---|
-| Wording only; valid data stays valid | patch |
-| New optional item, example, or crosswalk | minor |
-| Rename, removal, narrowed meaning, or a new required field | major (before 1.0: minor, with a CHANGELOG callout) |
+| Changes no rule's meaning; valid records stay valid | patch |
+| An optional field, a rule that binds only that field, an example, or a crosswalk | minor |
+| A rename or a removal; a narrower, looser, or new rule; a new required field | major (before 1.0: minor, with a CHANGELOG callout) |
 
 Break a conformance requirement once, in one version, with a migration note. Tag every release when it ships.
 
@@ -43,7 +43,7 @@ Break a conformance requirement once, in one version, with a migration note. Tag
 ## Every change
 
 - [ ] Prose, data, examples, and CHANGELOG changed in one commit.
-- [ ] `node scripts/check-standard.mjs` and `node scripts/check-examples.mjs` exit 0. Read their summary lines, not only the exit codes.
+- [ ] `node scripts/check-standard.mjs`, `node scripts/check-osfp.mjs`, and `node scripts/self-test.mjs` exit 0. Read their summary lines, not only the exit codes.
 - [ ] After any batch edit, re-read the committed files. Do not trust a script's exit code alone.
 - [ ] The version bump matches the table above.
 - [ ] README and any site describe the released version only.
@@ -59,5 +59,5 @@ Before the first public release, all of these hold:
 - [ ] Licenses are chosen for the prose and for the code and schemas, and LICENSE files are added.
 - [ ] Maintainers are named, and the contribution URL resolves.
 - [ ] `allowDeclaredGaps` is false in `standard.config.json`, and the checker is green locally and in CI.
-- [ ] Two outside readers have reviewed it on the record. Without them, the release says "draft".
+- [ ] The condition for leaving draft in GOVERNANCE.md holds. If it does not, the release says "draft".
 - [ ] VERIFICATION.md has a dated entry for this release.

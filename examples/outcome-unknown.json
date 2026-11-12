@@ -7,7 +7,7 @@
   "sequence": 2,
   "harness": { "name": "example-coder", "version": "2.3.1" },
   "state": "unknown",
-  "stateAt": "2026-11-11T18:01:05Z",
+  "stateAt": "2026-11-11T18:02:05Z",
   "stopRequestedAt": "2026-11-11T18:01:05Z",
-  "note": "The harness did not acknowledge the start within 60 seconds and did not answer the stop request. Whether it changed the repository is not known. No automatic retry."
+  "note": "The harness did not acknowledge the start within 60 seconds. The supervisor requested a stop, and no confirmation came. Whether the attempt changed the repository is not known. A person decides whether another attempt starts."
 }

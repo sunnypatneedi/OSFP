@@ -1,0 +1,2 @@
+# The checks parse lines, so every text file is checked out with LF endings.
+* text=auto eol=lf

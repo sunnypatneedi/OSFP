@@ -14,10 +14,12 @@
 //   [changelog]  CHANGELOG has an [Unreleased] heading and a heading for the current version
 //   [ids]        every ID in the data file is well-formed and unique, and there is at least one
 //   [parity]     prose and data hold the same IDs, compared both ways
-//   [text]       each configured text field matches the one prose line that defines its ID.
-//                A definition line starts with the ID. A second definition, a key word the
-//                data text lacks, or a key word beside the ID anywhere else also fails.
-//                Text found somewhere else in the prose does not count.
+//   [text]       each configured text field equals the text of the one block that defines its
+//                ID: what follows the ID in a list item or paragraph, a cell after the ID in a
+//                table row, or a block under a defining heading. Equal, not contained: a data
+//                text cut short and a definition that says more both fail. A missing text
+//                field, a second definition, a key word the data text lacks, or a key word
+//                beside the ID anywhere else also fails.
 //   [pinned]     IDs pinned by hand in the config exist in prose and data
 //   [citations]  every item has introducedIn; items new in this version cite a bibliography
 //                entry with a DOI or URL; declared gaps fail unless the config allows them
@@ -366,6 +368,19 @@ function extentOf(blocks, i) {
   return extent;
 }
 
+// The texts a definition gives its ID, any one of which the data text must equal: what follows
+// the ID and its separator, each cell after the ID's cell in a table row, and each block under
+// a defining heading.
+const SEPARATOR = /^\s*(?:[—–:.)-]+\s*)?/;
+const bodyOf = (b) => norm(b.lines.join(" ").slice(LEAD.exec(b.lines[0])[0].length));
+function definitionTexts(extent) {
+  const [first, ...under] = extent;
+  const line = first.lines.join(" ");
+  if (TABLE_ROW.test(line)) return line.split("|").slice(2, -1).map(norm).filter(Boolean);
+  const afterId = bodyOf(first).replace(ID_AT_START, "").replace(SEPARATOR, "");
+  return [afterId, ...under.map(bodyOf)].filter(Boolean);
+}
+
 // Maps each ID to its definition sites, and collects every block a definition owns.
 function collectDefinitions(blocks) {
   const defs = new Map();
@@ -374,20 +389,20 @@ function collectDefinitions(blocks) {
     if (!b.defines) return;
     const extent = extentOf(blocks, i);
     for (const x of extent) owned.add(x);
-    const site = { line: b.line, text: norm(extent.map((x) => x.lines.join(" ")).join(" ")) };
+    const site = { line: b.line, text: norm(extent.map((x) => x.lines.join(" ")).join(" ")), texts: definitionTexts(extent) };
     defs.set(b.defines, [...(defs.get(b.defines) ?? []), site]);
   });
   return { defs, owned };
 }
 
-// The item's configured text fields, as [field, value] pairs. A field that is not a string fails.
+// The item's configured text fields, as [field, value] pairs. A field that is missing, empty, or
+// not a string fails: a definition with no data text to compare is bound to nothing.
 function textFieldsOf(it) {
   const texts = [];
   for (const f of cfg.textFields) {
     const v = it.node[f];
-    if (v === undefined) continue;
-    if (typeof v === "string") texts.push([f, v]);
-    else fail("text", `${it.id}.${f} is not a string`);
+    if (typeof v === "string" && v.trim()) texts.push([f, v]);
+    else fail("text", `${it.id}.${f} is ${v === undefined ? "missing" : "empty or not a string"}; every item carries each configured text field`);
   }
   return texts;
 }
@@ -406,8 +421,8 @@ function compareWithDefinitions(it, texts, sites) {
   const allowed = texts.reduce((n, [, v]) => n + keywordCount(v), 0);
   for (const s of sites) {
     for (const [f, v] of texts) {
-      if (!s.text.includes(norm(v))) {
-        fail(c, `${it.id}.${f} does not match the definition at ${where(s.line)}; data says "${trunc(v, 90)}"`);
+      if (!s.texts.includes(norm(v))) {
+        fail(c, `${it.id}.${f} does not equal the definition at ${where(s.line)}; data says "${trunc(v, 90)}"`);
       }
     }
     const found = keywordCount(s.text);
@@ -456,7 +471,7 @@ function checkText(items, dataIds) {
   const restated = failRestatements(blocks, owned, dataIds);
   note(
     c,
-    `${compared} text fields (${cfg.textFields.join(", ")}) matched against their ID's own definition; ` +
+    `${compared} text fields (${cfg.textFields.join(", ")}) compared for equality with their ID's own definition; ` +
       `${defs.size} definitions found; ${restated} restatement(s) with key words`,
   );
 }

@@ -9,8 +9,11 @@
     "osfpVersion": "0.1.0-draft.1",
     "recordType": "progress",
     "id": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-000000000007",
+    "event": "overdue",
+    "occurredAt": "2026-11-12T03:50:00Z",
+    "taskId": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000a2",
     "scheduleId": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000d1",
-    "result": "not-run",
+    "result": "missed",
     "expectedAt": "2026-11-12T03:35:00Z"
   }
 }
