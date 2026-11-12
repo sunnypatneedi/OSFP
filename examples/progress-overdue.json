@@ -1,0 +1,16 @@
+{
+  "specversion": "1.0",
+  "type": "io.github.sunnypatneedi.osfp.progress.overdue",
+  "source": "urn:example:supervisor",
+  "id": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-000000000006",
+  "time": "2026-11-12T03:50:00Z",
+  "datacontenttype": "application/json",
+  "data": {
+    "osfpVersion": "0.1.0-draft.1",
+    "recordType": "progress",
+    "id": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-000000000007",
+    "scheduleId": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000d1",
+    "result": "not-run",
+    "expectedAt": "2026-11-12T03:35:00Z"
+  }
+}

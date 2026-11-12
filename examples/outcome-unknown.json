@@ -1,0 +1,13 @@
+{
+  "osfpVersion": "0.1.0-draft.1",
+  "recordType": "outcome",
+  "id": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-000000000002",
+  "taskId": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000a1",
+  "attemptId": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000b1",
+  "sequence": 2,
+  "harness": { "name": "example-coder", "version": "2.3.1" },
+  "state": "unknown",
+  "stateAt": "2026-11-11T18:01:05Z",
+  "stopRequestedAt": "2026-11-11T18:01:05Z",
+  "note": "The harness did not acknowledge the start within 60 seconds and did not answer the stop request. Whether it changed the repository is not known. No automatic retry."
+}
