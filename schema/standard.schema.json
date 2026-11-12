@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Open Software Factory Profile machine-readable encoding",
+  "description": "Validates spec/standard.json. Each item mirrors one item in spec/STANDARD.md with the same ID and statement.",
+  "type": "object",
+  "required": [
+    "standard",
+    "name",
+    "version",
+    "items",
+    "bibliography"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "standard": {
+      "const": "OSFP"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      }
+    },
+    "bibliography": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    }
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "required": [
+        "id",
+        "statement",
+        "introducedIn",
+        "classes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^OSFP\\.[A-Z]{2}\\.[0-9]+$"
+        },
+        "area": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "introducedIn": {
+          "type": "string"
+        },
+        "deprecatedIn": {
+          "type": "string"
+        },
+        "replacedBy": {
+          "type": "string",
+          "pattern": "^OSFP\\.[A-Z]{2}\\.[0-9]+$"
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "citationsTodo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "factory",
+              "harness-adapter",
+              "verifier",
+              "supervisor",
+              "consumer"
+            ]
+          },
+          "description": "The classes of product this rule applies to (section 12)."
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "key",
+        "title"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authors": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer"
+        },
+        "doi": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "doi"
+          ]
+        },
+        {
+          "required": [
+            "url"
+          ]
+        }
+      ]
+    }
+  }
+}

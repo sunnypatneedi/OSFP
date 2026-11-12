@@ -1,0 +1,22 @@
+{
+  "standard": "OSFP",
+  "sourceDir": "spec",
+  "idPattern": "OSFP\\.[A-Z]{2}\\.[0-9]+",
+  "unprefixedPattern": "\\b[A-Z]{2}\\.[0-9]+\\b",
+  "textFields": [
+    "statement"
+  ],
+  "pinnedIds": [
+    "OSFP.AU.3",
+    "OSFP.OU.4",
+    "OSFP.EV.3",
+    "OSFP.EV.10",
+    "OSFP.PR.2"
+  ],
+  "_pinnedIds": "These five rules define the profile. The checker fails if one disappears from prose and data together. Add each rule here once it ships in a tagged release.",
+  "citations": {
+    "required": true,
+    "allowDeclaredGaps": false,
+    "_releaseGate": "Declared gaps are off: every rule cites a source. Keep it that way for every public release."
+  }
+}

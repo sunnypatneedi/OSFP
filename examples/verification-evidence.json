@@ -1,0 +1,55 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    { "name": "checked-tree", "digest": { "gitTree": "2d4c6e8a0b1c3d5e7f9a1b3c5d7e9f0a2b4c6d8e" } }
+  ],
+  "predicateType": "https://github.com/sunnypatneedi/OSFP/blob/main/predicates/verification-evidence/v0.1.md",
+  "predicate": {
+    "osfpVersion": "0.1.0-draft.1",
+    "recordType": "verification-evidence",
+    "id": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-000000000003",
+    "taskId": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000a1",
+    "attemptId": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000b2",
+    "checks": [
+      {
+        "name": "unit tests",
+        "command": "pytest -q",
+        "status": "passed",
+        "unitsExamined": 214,
+        "unitsFailed": 0,
+        "unitsSkipped": 3,
+        "exitStatus": 0,
+        "outputComplete": true,
+        "outputDigest": {
+          "sha256": "8e1a3c5b7d9f0e2a4c6b8d0f1e3a5c7b9d1f3e5a7c9b1d3f5e7a9c1b3d5f7e9a"
+        },
+        "treeAtStart": { "gitTree": "2d4c6e8a0b1c3d5e7f9a1b3c5d7e9f0a2b4c6d8e" },
+        "treeAtEnd": { "gitTree": "2d4c6e8a0b1c3d5e7f9a1b3c5d7e9f0a2b4c6d8e" },
+        "inputsChanged": false,
+        "changedInputs": [],
+        "answersReachable": false
+      },
+      {
+        "name": "integration tests",
+        "command": "pytest -q tests/integration",
+        "status": "not-run",
+        "unitsExamined": 0,
+        "unitsFailed": 0,
+        "unitsSkipped": 12,
+        "exitStatus": 0,
+        "outputComplete": true,
+        "outputDigest": {
+          "sha256": "1c3e5a7b9d0f2e4a6c8b0d2f4e6a8c0b2d4f6e8a0c2b4d6f8e0a2c4b6d8f0e2a"
+        },
+        "treeAtStart": { "gitTree": "2d4c6e8a0b1c3d5e7f9a1b3c5d7e9f0a2b4c6d8e" },
+        "treeAtEnd": { "gitTree": "2d4c6e8a0b1c3d5e7f9a1b3c5d7e9f0a2b4c6d8e" },
+        "inputsChanged": false,
+        "changedInputs": [],
+        "answersReachable": false
+      }
+    ],
+    "findings": [],
+    "verifier": "https://ci.example.com/verifier",
+    "checkedAt": "2026-11-11T18:20:00Z"
+  }
+}

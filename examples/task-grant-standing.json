@@ -1,0 +1,18 @@
+{
+  "osfpVersion": "0.1.0-draft.1",
+  "recordType": "task-grant",
+  "id": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-000000000009",
+  "scheduleId": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000d1",
+  "generation": 1,
+  "requestRef": "urn:uuid:7b0c9d62-1f3a-4c2e-9a51-0000000000d1",
+  "resources": [{ "uri": "https://git.example.com/acme/widgets.git", "access": "read" }],
+  "operations": ["start"],
+  "disclosures": [],
+  "tools": [],
+  "restrictions": [{ "target": "network", "rule": "deny-all", "enforcement": "enforced" }],
+  "limits": { "startAckSeconds": 120, "totalSeconds": 1800 },
+  "inspection": true,
+  "approvedBy": "mailto:owner@example.com",
+  "approvedAt": "2026-11-01T09:00:00Z",
+  "expiresAt": "2027-02-01T00:00:00Z"
+}
